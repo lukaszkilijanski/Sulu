@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  sulu-php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sulu-php
+    volumes:
+      - ./sulu:/var/www/html       # Mount Sulu project directory
+      - ./php.ini:/usr/local/etc/php/php.ini  # Mount custom php.ini
+    working_dir: /var/www/html
+    depends_on:
+      - sulu-mariadb
+
+  sulu-mariadb:
+    image: mariadb:10.5
+    container_name: sulu-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sulu
+      MYSQL_USER: sulu
+      MYSQL_PASSWORD: sulu
+    volumes:
+      - db_data:/var/lib/mysql
+
+  sulu-nginx:
+    image: nginx:latest
+    container_name: sulu-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Mount Nginx config
+      - ./sulu:/var/www/html       # Mount Sulu project directory
+    ports:
+      - "8080:80"
+    depends_on:
+      - sulu-php
+
+volumes:
+  db_data:
