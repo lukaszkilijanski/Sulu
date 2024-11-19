@@ -2,11 +2,11 @@ services:
   sulu-php:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/local/php/Dockerfile
     container_name: sulu_php
     volumes:
       - ./:/var/www/html       # Mount Sulu project directory
-      - ./php.ini:/usr/local/etc/php/php.ini  # Mount custom php.ini
+      - ./docker/local/php/php.ini:/usr/local/etc/php/php.ini  # Mount custom php.ini
     working_dir: /var/www/html
     depends_on:
       - sulu-mariadb
@@ -28,7 +28,7 @@ services:
     image: nginx:latest
     container_name: sulu_nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Mount Nginx config
+      - ./docker/local/nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Mount Nginx config
       - ./sulu:/var/www/html       # Mount Sulu project directory
     ports:
       - "80:80"
