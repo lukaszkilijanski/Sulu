@@ -5,10 +5,17 @@ COMPOSE_FILE = docker-compose.local.yml
 .PHONY: up
 up:
 	@if [ "$(env)" = "testing" ]; then \
-		$(DOCKER_COMPOSE) -f docker-compose.testing.yml up -d; \
+		COMPOSE_FILE = docker-compose.testing.yml \
 	fi
 
 	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d; \
+
+ 	# copy .env .env.example
+	# composer install
+	# bin/adminconsole sulu:build dev
+	#bin/console doctrine:fixtures:load
+
+
 
 .PHONY: down
 down:
