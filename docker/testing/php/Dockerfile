@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd pdo pdo_mysql opcache zip
 
 # Copy custom php.ini
-COPY php.ini /usr/local/etc/php/php.ini
+COPY ./docker/testing/php/php.ini /usr/local/etc/php/php.ini
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
