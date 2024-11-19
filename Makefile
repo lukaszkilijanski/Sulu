@@ -1,21 +1,19 @@
--include .env
+# include .env
 DOCKER_COMPOSE = docker compose
 COMPOSE_FILE = docker-compose.local.yml
 
 .PHONY: up
 up:
 	@if [ "$(env)" = "testing" ]; then \
-		COMPOSE_FILE = docker-compose.testing.yml \
+		COMPOSE_FILE=docker-compose.testing.yml; \
 	fi
 
-	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d; \
+	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d
 
- 	# copy .env .env.example
+	# copy .env .env.example
 	# composer install
 	# bin/adminconsole sulu:build dev
-	#bin/console doctrine:fixtures:load
-
-
+	# bin/console doctrine:fixtures:load
 
 .PHONY: down
 down:
