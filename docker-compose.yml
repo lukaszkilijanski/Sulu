@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: sulu_php
     volumes:
-      - ./sulu:/var/www/html       # Mount Sulu project directory
+      - ./:/var/www/html       # Mount Sulu project directory
       - ./php.ini:/usr/local/etc/php/php.ini  # Mount custom php.ini
     working_dir: /var/www/html
     depends_on:
@@ -13,6 +13,8 @@ services:
 
   sulu-mariadb:
     image: mariadb:10.5
+    ports:
+      - "3306:3306"
     container_name: sulu_mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -29,7 +31,7 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Mount Nginx config
       - ./sulu:/var/www/html       # Mount Sulu project directory
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - sulu-php
 
