@@ -15,7 +15,7 @@ services:
   sulu-mariadb:
     image: mariadb:10.5
     ports:
-      - "3306:3306"
+      - "127.0.0.1:3306:3306"
     container_name: sulu_mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
