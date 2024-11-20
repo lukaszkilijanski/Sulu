@@ -47,6 +47,17 @@
                 <title lang="en">Color</title>
             </meta>
         </property>
+        <property name="locationtest" type="location">
+            <meta>
+                <title lang="en">Location</title>
+            </meta>
+            <params>
+                <param name="default_latitude" value="50.8703300" />
+                <param name="default_longitude" value="20.6275200" />
+                <param name="zoom" value="12" />
+            </params>
+        </property>
+
         <property name="eventType" type="single_select">
             <meta>
                 <title lang="en">Event Type</title>
