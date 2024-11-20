@@ -1,0 +1,26 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block content %}#}
+{#    Event template#}
+
+{#    <h3>{{ content.eventType }}</h3>#}
+{#    <h3>{{ content.startDate }} </h3>#}
+{#    {{ content.color }}#}
+
+{#    #}
+{#    <div style="color: {{ content.color | raw }}"><h1>{{ content.title }}</h1> </div>#}
+
+{#    {{ content.article | raw }}#}
+
+{#    {{ dump(content) }}#}
+
+
+
+
+{#{% endblock %}#}
+
+{% block content %}
+
+{{ content | json_encode | raw }}
+
+{% endblock %}

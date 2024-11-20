@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>event</key>
+
+    <view>pages/event</view>
+    <controller>Sulu\Bundle\WebsiteBundle\Controller\DefaultController::indexAction</controller>
+    <cacheLifetime>604800</cacheLifetime>
+
+    <meta>
+        <title lang="en">Event</title>
+        <title lang="de">Event</title>
+    </meta>
+
+    <properties>
+        <section name="organizationalDetails">
+            <meta>
+                <title lang="en">Organizational Details</title>
+            </meta>
+            <properties>
+                <property name="isCode" type="checkbox" colspan="6">
+                    <meta>
+                        <title lang="en">checkBox isCode</title>
+                    </meta>
+                </property>
+
+                <property name="code" type="text_area" visibleCondition="isCode == true" colspan="6">
+                    <meta>
+                        <title lang="en">Text area if isCode</title>
+                    </meta>
+                </property>
+            </properties>
+        </section>
+        <property name="startDate" type="date" mandatory="true">
+            <meta>
+                <title lang="en">Start Date</title>
+                <info_text lang="en">
+                    If the same as the start date, the event is treated as
+                    one-day event.
+                </info_text>
+            </meta>
+        </property>
+        <property name="color" type="color">
+            <meta>
+                <title lang="en">Color</title>
+            </meta>
+        </property>
+        <property name="eventType" type="single_select">
+            <meta>
+                <title lang="en">Event Type</title>
+            </meta>
+            <params>
+                <param name="values" type="collection">
+                    <param name="concert">
+                        <meta>
+                            <title lang="en">Concert</title>
+                        </meta>
+                    </param>
+                    <param name="festival">
+                        <meta>
+                            <title lang="en">Festival</title>
+                        </meta>
+                    </param>
+                </param>
+            </params>
+        </property>
+        <property name="title" type="text_line" mandatory="true">
+            <meta>
+                <title lang="en">Title</title>
+                <title lang="de">Titel</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+
+            <tag name="sulu.rlp.part"/>
+        </property>
+
+        <property name="url" type="resource_locator" mandatory="true">
+            <meta>
+                <title lang="en">Resourcelocator</title>
+                <title lang="de">Adresse</title>
+            </meta>
+
+            <tag name="sulu.rlp"/>
+        </property>
+
+        <property name="article" type="text_editor">
+            <meta>
+                <title lang="en">Article</title>
+                <title lang="de">Artikel</title>
+            </meta>
+        </property>
+    </properties>
+</template>
