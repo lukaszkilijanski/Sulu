@@ -7,6 +7,9 @@ services:
     volumes:
       - ./:/var/www/html       # Mount Sulu project directory
       - ./docker/local/php/php.ini:/usr/local/etc/php/php.ini  # Mount custom php.ini
+    environment:
+      - XDEBUG_MODE=debug
+      - XDEBUG_CONFIG=client_host=host.docker.internal
     working_dir: /var/www/html
     depends_on:
       - sulu-mariadb
