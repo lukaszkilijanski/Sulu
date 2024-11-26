@@ -8,7 +8,6 @@ declare(strict_types=1);
  * @copyright Copyright (C) 2024 smartive.app (https://smartive.app)
  */
 
-
 namespace App\EventSubscriber;
 
 use App\Entity\Car;
@@ -33,9 +32,11 @@ class PageModifiedSubscriber implements EventSubscriberInterface
 
     public function testEvent(PersistEvent $event)
     {
-        $car = new Car();
-        $car->setName($event->getDocument()->getTitle());
-        $this->entityManager->persist($car);
-        $this->entityManager->flush();
-    }
+        $document = $event->getDocument();
+        /** @var \Sulu\Bundle\PageBundle\Document\PageDocument $document */
+        $document = $event->getDocument();
+        $locationData = $document->getStructure()->getProperty('locationtest')->getValue();
+        $lat = $locationData['lat'];
+        $long = $locationData['long'];
+    }                                                      
 }
